@@ -27,28 +27,40 @@ namespace SimpleShutdownTimer
     public sealed partial class MainPage : Page
     {
 
-        DispatcherTimer t;
-        private Clock clock;
+        DispatcherTimer _t;
+        private Clock _clock;
+        private KillTime _shutdownTime;
+
+        private bool KillswitchEngaged = false;
         public MainPage()
         {
             this.InitializeComponent();
             
             //activate the clock here
-            this.clock = new Clock();
-
-            t = new DispatcherTimer();
-            t.Interval = new TimeSpan(0,0,1);
-            t.Tick += timer_SetTime;
-            t.Start();
-
+            this._clock = new Clock();
+            this._shutdownTime = new KillTime();
+            _t = new DispatcherTimer();
+            _t.Interval = new TimeSpan(0,0,1);
+            _t.Tick += timer_SetTime;
+            _t.Start();
+            
 
         }
 
 
         private void timer_SetTime(Object sender, object e)
         {
-            currentTimeDisplay.Text = clock.Time;
+            currentTimeDisplay.Text = _clock.Time;
             
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            TimeSpan remaining = shutdown_AT.Time - DateTime.Now.TimeOfDay;
+            this._shutdownTime.Seconds = (int)remaining.TotalSeconds;
+
+            //killswitchCountdownText.Visibility = Visibility.Visible;
+            killswitchCountdownText.Text = remaining.Minutes.ToString() + ":" + remaining.Seconds.ToString().Split('.')[0]; // this._shutdownTime.Seconds.ToString();
         }
     }
 }

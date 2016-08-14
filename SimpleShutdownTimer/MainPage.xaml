@@ -13,16 +13,20 @@
                 <local:Clock/>
             </TextBlock.DataContext>
         </TextBlock>
-        <Pivot x:Name="shutdownOptionPivot" Title="The machine will shutdown" Margin="10,210,767,81" FontSize="48">
+        <Pivot x:Name="shutdownOptionPivot" Title="The machine will shutdown" Margin="10,210,767,0" FontSize="48" Height="533" VerticalAlignment="Top">
             <PivotItem Header="At.." Margin="12,0,0,216" HorizontalAlignment="Left" Width="460">
-                <TimePicker HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Height="171" Width="445" FontSize="96"/>
+                <TimePicker x:Name="shutdown_AT" HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Height="171" Width="445" FontSize="96"/>
             </PivotItem>
             <PivotItem Header="In..">
                 <Grid/>
             </PivotItem>
         </Pivot>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,29,0,0" TextWrapping="Wrap" Text="The time is currently" VerticalAlignment="Top" Height="71" Width="503" FontSize="48"/>
-        <Button x:Name="button" Content="START" HorizontalAlignment="Center" Margin="28,526,816,237" VerticalAlignment="Center" Height="66" Width="435" FontSize="48" Background="#CCB60A0A"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="28,29,0,0" TextWrapping="Wrap" Text="The time is currently" VerticalAlignment="Top" Height="71" Width="503" FontSize="48"/>
+        <Button x:Name="button" Content="START" HorizontalAlignment="Center" Margin="28,518,816,245" VerticalAlignment="Center" Height="66" Width="435" FontSize="48" Background="#CCB60A0A" Click="button_Click"/>
+        <TextBlock x:Name="killswitchCountdownText" HorizontalAlignment="Left" Margin="122,608,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="255" FontSize="32" Visibility="Visible">
+        	<Run Text="X minutes "/>
+        	<Run Text="remain"/>
+        </TextBlock>
 
     </Grid>
 </Page>
