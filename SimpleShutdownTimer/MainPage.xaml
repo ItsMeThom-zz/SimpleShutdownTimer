@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="SimpleShutdownTimer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SimpleShutdownTimer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Width="579.186" Height="838.733">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Left" Width="1279" Margin="0,0,-700,10">
+        <TextBlock x:Name="currentTimeText" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="HH:MM:SS" VerticalAlignment="Top" Height="143" Width="476" FontSize="96"/>
+        <Pivot x:Name="shutdownOptionPivot" Title="The machine will shutdown" Margin="10,210,767,81" FontSize="48">
+            <PivotItem Header="At.." Margin="12,0,0,216" HorizontalAlignment="Left" Width="460">
+                <TimePicker HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Height="171" Width="445" FontSize="96"/>
+            </PivotItem>
+            <PivotItem Header="In..">
+                <Grid/>
+            </PivotItem>
+        </Pivot>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,29,0,0" TextWrapping="Wrap" Text="The time is currently" VerticalAlignment="Top" Height="71" Width="503" FontSize="48"/>
+        <Button x:Name="button" Content="START" HorizontalAlignment="Center" Margin="28,526,816,237" VerticalAlignment="Center" Height="66" Width="435" FontSize="48" Background="#CCB60A0A"/>
+
+    </Grid>
+</Page>
