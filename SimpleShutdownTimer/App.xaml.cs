@@ -33,7 +33,12 @@ namespace SimpleShutdownTimer
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-        }
+
+
+
+
+            
+    }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -79,7 +84,11 @@ namespace SimpleShutdownTimer
             }
             // Ensure the current window is active
             Window.Current.Activate();
-        }
+
+            
+            
+
+    }
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails

@@ -13,6 +13,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
+using System.Threading;
+
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace SimpleShutdownTimer
@@ -22,9 +26,29 @@ namespace SimpleShutdownTimer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        DispatcherTimer t;
+        private Clock clock;
         public MainPage()
         {
             this.InitializeComponent();
+            
+            //activate the clock here
+            this.clock = new Clock();
+
+            t = new DispatcherTimer();
+            t.Interval = new TimeSpan(0,0,1);
+            t.Tick += timer_SetTime;
+            t.Start();
+
+
+        }
+
+
+        private void timer_SetTime(Object sender, object e)
+        {
+            currentTimeDisplay.Text = clock.Time;
+            
         }
     }
 }

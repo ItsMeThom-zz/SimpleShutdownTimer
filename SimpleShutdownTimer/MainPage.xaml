@@ -8,7 +8,11 @@
     mc:Ignorable="d" Width="579.186" Height="838.733">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Left" Width="1279" Margin="0,0,-700,10">
-        <TextBlock x:Name="currentTimeText" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="HH:MM:SS" VerticalAlignment="Top" Height="143" Width="476" FontSize="96"/>
+        <TextBlock x:Name="currentTimeDisplay" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="{Binding clock.Time}" VerticalAlignment="Top" Height="143" Width="476" FontSize="96">
+            <TextBlock.DataContext>
+                <local:Clock/>
+            </TextBlock.DataContext>
+        </TextBlock>
         <Pivot x:Name="shutdownOptionPivot" Title="The machine will shutdown" Margin="10,210,767,81" FontSize="48">
             <PivotItem Header="At.." Margin="12,0,0,216" HorizontalAlignment="Left" Width="460">
                 <TimePicker HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Height="171" Width="445" FontSize="96"/>

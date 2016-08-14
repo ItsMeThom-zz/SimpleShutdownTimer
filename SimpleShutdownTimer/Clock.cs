@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace SimpleShutdownTimer
 {
-    class DigitalClock
+    class Clock
     {
 
-        private 
-        public DigitalClock()
+        public string Time
         {
+            get
+            {
+                return DateTime.Now.ToString("HH:mm:ss tt");
+            }
+
 
         }
-
 
     }
 }
