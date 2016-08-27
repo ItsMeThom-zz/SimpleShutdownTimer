@@ -8,25 +8,19 @@
     mc:Ignorable="d" Width="579.186" Height="838.733">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" HorizontalAlignment="Left" Width="1279" Margin="0,0,-700,10">
-        <TextBlock x:Name="currentTimeDisplay" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="{Binding clock.Time}" VerticalAlignment="Top" Height="143" Width="476" FontSize="96">
+        <TextBlock x:Name="currentTimeDisplay" HorizontalAlignment="Left" Margin="16,114,0,0" TextWrapping="Wrap" Text="{Binding clock.Time}" VerticalAlignment="Top" Height="143" Width="476" FontSize="96">
             <TextBlock.DataContext>
                 <local:Clock/>
             </TextBlock.DataContext>
         </TextBlock>
-        <Pivot x:Name="shutdownOptionPivot" Title="The machine will shutdown" Margin="10,210,767,0" FontSize="48" Height="533" VerticalAlignment="Top">
-            <PivotItem Header="At.." Margin="12,0,0,216" HorizontalAlignment="Left" Width="460">
-                <TimePicker x:Name="shutdown_AT" HorizontalAlignment="Left" Margin="0,56,0,0" VerticalAlignment="Top" Height="171" Width="445" FontSize="96"/>
-            </PivotItem>
-            <PivotItem Header="In..">
-                <Grid/>
-            </PivotItem>
-        </Pivot>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="28,29,0,0" TextWrapping="Wrap" Text="The time is currently" VerticalAlignment="Top" Height="71" Width="503" FontSize="48"/>
-        <Button x:Name="button" Content="START" HorizontalAlignment="Center" Margin="28,518,816,245" VerticalAlignment="Center" Height="66" Width="435" FontSize="48" Background="#CCB60A0A" Click="button_Click"/>
-        <TextBlock x:Name="killswitchCountdownText" HorizontalAlignment="Left" Margin="122,608,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="255" FontSize="32" Visibility="Visible">
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="18,43,0,0" TextWrapping="Wrap" Text="The time is currently" VerticalAlignment="Top" Height="71" Width="445" FontSize="48"/>
+        <Button x:Name="timer_button" Content="START" HorizontalAlignment="Center" Margin="18,518,816,245" VerticalAlignment="Center" Height="66" Width="445" FontSize="48" Background="#CC41B60A" Click="button_Click" Foreground="White"/>
+        <TextBlock x:Name="killswitchCountdownText" HorizontalAlignment="Left" Margin="18,608,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="62" Width="445" FontSize="32" Visibility="Visible">
         	<Run Text="X minutes "/>
         	<Run Text="remain"/>
         </TextBlock>
+        <TimePicker x:Name="shutdown_AT" HorizontalAlignment="Left" Margin="18,348,0,0" VerticalAlignment="Top" Height="171" Width="445" FontSize="96"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="18,272,0,0" TextWrapping="Wrap" Text="Shutdown at.." VerticalAlignment="Top" Height="71" Width="445" FontSize="48"/>
 
     </Grid>
 </Page>

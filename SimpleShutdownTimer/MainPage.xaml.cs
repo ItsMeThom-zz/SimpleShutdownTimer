@@ -27,18 +27,27 @@ namespace SimpleShutdownTimer
     public sealed partial class MainPage : Page
     {
 
-        DispatcherTimer _t;
-        private Clock _clock;
-        private KillTime _shutdownTime;
+        private DispatcherTimer _t; //handles updating the current time
 
-        private bool KillswitchEngaged = false;
+        private DispatcherTimer _countdown; //handles updating the countdown to killswtich
+
+        private Clock _clock;
+        private KillSwitch _killswitch;
+
+        private bool _countdown_active = false;
+        
         public MainPage()
         {
             this.InitializeComponent();
-            
+
+            //Set the button to the nice system color blue and hide the countdown
+            timer_button.Background = new SolidColorBrush(Windows.UI.Colors.Blue);
+            killswitchCountdownText.Visibility = Visibility.Collapsed;
+
             //activate the clock here
             this._clock = new Clock();
-            this._shutdownTime = new KillTime();
+            this._killswitch = new KillSwitch();
+
             _t = new DispatcherTimer();
             _t.Interval = new TimeSpan(0,0,1);
             _t.Tick += timer_SetTime;
@@ -51,16 +60,51 @@ namespace SimpleShutdownTimer
         private void timer_SetTime(Object sender, object e)
         {
             currentTimeDisplay.Text = _clock.Time;
-            
+        }
+
+        private void countdown_Count(Object sender, object e)
+        {
+            if(this._killswitch.Tick()) //returns true on Coundown <= 0
+            {
+                this._killswitch.Engage();
+            }
+            else
+            {
+                killswitchCountdownText.Text = _killswitch.Countdown.ToString() + " Remaining";
+            }
+
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            TimeSpan remaining = shutdown_AT.Time - DateTime.Now.TimeOfDay;
-            this._shutdownTime.Seconds = (int)remaining.TotalSeconds;
+            if(!_countdown_active)
+            {
+                _killswitch.Countdown = _clock.SpanSeconds(shutdown_AT.Time, DateTime.Now.TimeOfDay);
+                _countdown = new DispatcherTimer();
+                _countdown.Interval = new TimeSpan(0, 0, 1);
+                _countdown.Tick += countdown_Count;
+                _countdown.Start();
 
-            //killswitchCountdownText.Visibility = Visibility.Visible;
-            killswitchCountdownText.Text = remaining.Minutes.ToString() + ":" + remaining.Seconds.ToString().Split('.')[0]; // this._shutdownTime.Seconds.ToString();
+                _countdown_active = true;
+                killswitchCountdownText.Visibility = Visibility.Visible;
+
+                //set button to 'Abort' state functionality
+                timer_button.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                timer_button.Content = "Abort";
+            } 
+            else
+            {
+                _countdown.Stop();
+                timer_button.Background = new SolidColorBrush(Windows.UI.Colors.Blue);
+                timer_button.Content = "Start";
+                _countdown_active = false;
+                killswitchCountdownText.Visibility = Visibility.Collapsed;
+
+            }
+
+            
+
+            
         }
     }
 }
